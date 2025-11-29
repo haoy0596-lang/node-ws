@@ -1,50 +1,50 @@
-name: Build huggingface Image
+姓名: 名称：构建拥抱面图像
 
-on:
-  push:
-    branches: [ hug ]
-    paths:
+在……之上:
+推:
+分支机构: [分支：[[]]
+路径:
       - 'Dockerfile'
       - 'index.js'
       - 'package.json'
       - 'index.html'
-  pull_request:
-    branches: [ hug ]
-  workflow_dispatch:
+pull_request:
+分支机构: [拥抱]
+workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+工作:
+建立:
+run-on: 连续的:ubuntu-最新
+权限:
+内容: 内容：已读
+包: 包：写入
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: hug 
+步骤:
+      - 姓名: -名称：签出存储库
+uses: 用途：操作/签出@v4
+和……一起:
+裁判: 参考：拥抱
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      - 姓名: -名称：登录GitHub容器注册表
+uses: 用途：docker/login-action@v3
+和……一起:
+注册表: 注册表：ghcr.io
+用户名: 用户名：${{github.actor}}{{github.actor}}
+密码: 密码：${{secretters.GITHUB_TOKEN}}{{secrets.GITHUB_TOKEN}}
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - 姓名: -名称：设置Docker Buildx
+uses: 用途：docker/setup-buildx-action@v3
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/hugws:latest
-          labels: |
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-            org.opencontainers.image.description=http server
-            org.opencontainers.image.licenses=MIT
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+      - 姓名: -名称：构建并推送Docker映像
+uses: 用途：docker/build-push-action@v5
+和……一起:
+语境: .
+推: 正确
+标签: |
+ghcr.io/${{github.repository_owner}/song：最新
+标签: |
+org.open containers.image.source=https://github.com/${{github.repository}}
+org.opencontainers.image.description=http服务器
+org.open containers.image.licenses=MIT
+缓存来源: 缓存来源：type=gha
+缓存到: cache-to：类型=gha，模式=max
